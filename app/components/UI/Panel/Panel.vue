@@ -11,28 +11,28 @@
 <template>
   <div
     v-bind="$attrs"
-    class="panel"
+    class="panel relative"
   >
-    <div
+    <UIDecorationBlock3D
       v-if="$slots.header"
       class="panel__header bg-[url(/images/plane/oak_log.webp)] bg-size-[8rem] bg-repeat px-8 py-6"
     >
       <slot name="header" />
-    </div>
+    </UIDecorationBlock3D>
 
-    <div
+    <UIDecorationBlock3D
       v-if="$slots.default"
       class="bg-[url(/images/plane/oak_planks.webp)] bg-size-[8rem] bg-repeat px-8 py-12"
     >
       <slot />
-    </div>
+    </UIDecorationBlock3D>
 
-    <div
+    <UIDecorationBlock3D
       v-if="$slots.footer"
       class="panel__footer bg-[url(/images/plane/oak_log.webp)] bg-size-[8rem] bg-repeat px-8 py-5"
     >
       <slot name="footer" />
-    </div>
+    </UIDecorationBlock3D>
   </div>
 </template>
 
@@ -51,7 +51,7 @@
   /* тень ВНИЗ за пределы панели — "ножки" выступают */
   .panel__footer {
     position: relative;
-    z-index: 1;
+    z-index: -1;
     box-shadow: 0 6px 14px 2px rgba(0, 0, 0, 0.6);
   }
 </style>

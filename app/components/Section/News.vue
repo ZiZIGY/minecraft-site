@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+﻿<script lang="ts" setup>
   import { motion } from 'motion-v';
 
   type TCategory = 'update' | 'event' | 'maintenance' | 'news';
@@ -77,7 +77,7 @@
 
 <template>
   <div
-    class="relative py-32 min-h-svh flex items-center bg-[url(/images/plane/stone.webp)] bg-size-[8rem] bg-repeat bg-bottom-right z-0 news"
+    class="relative py-32 min-h-svh flex items-center bg-[url(/images/plane/stone.webp)] bg-size-[8rem] bg-repeat bg-bottom-right z-0"
   >
     <ClientOnly>
       <WidgetOreField />
@@ -217,23 +217,6 @@
 </template>
 
 <style scoped>
-  .news {
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 150%;
-      bottom: 0;
-      height: 4rem;
-      background-image: url('/images/plane/stone.webp');
-      background-size: 8rem;
-      background-repeat: repeat-x;
-      background-position: top left;
-      transform: translate(-25%, 100%) skewX(45deg);
-      filter: brightness(0.6);
-    }
-  }
-
   .news-card {
     background: linear-gradient(
       145deg,
