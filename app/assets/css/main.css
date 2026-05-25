@@ -1,0 +1,98 @@
+@import 'tailwindcss';
+
+/* ── Tokens ───────────────────────────────────────────────── */
+@theme {
+  --font-minecraft: 'Minecraft', monospace;
+
+  /* Enchantment / active palette */
+  --color-mc-purple-light: #c084fc;
+  --color-mc-purple: #a855f7;
+  --color-mc-purple-dark: #5b21b6;
+
+  /* Reward / gold palette */
+  --color-mc-gold-light: #fcd34d;
+  --color-mc-gold: #fbbf24;
+  --color-mc-gold-dark: #b45309;
+
+  /* Diamond palette */
+  --color-mc-teal: #2dd4bf;
+  --color-mc-teal-light: #99f6e4;
+
+  /* Server status */
+  --color-mc-green: #4ade80;
+  --color-mc-red: #f87171;
+
+  /* ── Input ───────────────────────────────────────────────── */
+  --color-input: #8b8b8b;
+
+  /* ── Modal ───────────────────────────────────────────────── */
+  --color-modal: #c6c6c6;
+
+  /* ── Button base colors — hover/active/shadow выводятся через color-mix() */
+  --color-btn-stone: #6c6c6c;
+  --color-btn-grass: #3a7d1e;
+  --color-btn-lava:  #8b1a1a;
+
+  /* Text shadows */
+  --text-shadow-mc: 2px 2px 0 black;
+  --text-shadow-mc-active:
+    2px 2px 0 var(--color-mc-purple-dark),
+    0 0 10px var(--color-mc-purple-light), 0 0 22px var(--color-mc-purple);
+  --text-shadow-mc-gold:
+    2px 2px 0 var(--color-mc-gold-dark), 0 0 10px var(--color-mc-gold-light);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+@layer base {
+  html {
+    font-family: var(--font-minecraft);
+    scroll-behavior: smooth;
+  }
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+@utility text-shadow-mc {
+  text-shadow: var(--text-shadow-mc);
+}
+
+@utility text-shadow-mc-active {
+  text-shadow: var(--text-shadow-mc-active);
+}
+
+@utility text-shadow-mc-gold {
+  text-shadow: var(--text-shadow-mc-gold);
+}
+
+@utility text-shadow-none {
+  text-shadow: none;
+}
+
+@utility drop-shadow-mc-teal {
+  filter: drop-shadow(
+    0 0 48px color-mix(in srgb, var(--color-mc-teal) 70%, transparent)
+  );
+}
+
+/* shadow-mc-{sm|md|lg|xl} — градация теней в стиле MC */
+@utility shadow-mc-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+@utility shadow-mc-md {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+@utility shadow-mc-lg {
+  box-shadow: 0 8px 28px 4px rgba(0, 0, 0, 0.72);
+}
+
+@utility shadow-mc-xl {
+  box-shadow: 0 12px 40px 8px rgba(0, 0, 0, 0.85);
+}
+
+/* legacy — оставляем для совместимости */
+@utility shadow-mc-panel {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.75),
+    0 6px 32px rgba(0, 0, 0, 0.75);
+}

@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "home": "Главная",
+    "about": "О нас",
+    "rules": "Правила"
+  },
+  "hero": {
+    "tagline_prefix": "Где-то в",
+    "tagline_highlight": "темноте",
+    "tagline_suffix": "тебя уже ждут.",
+    "cta": "Играть"
+  },
+  "auth": {
+    "title_login": "Вход",
+    "title_register": "Регистрация",
+    "email": "Почта",
+    "password": "Пароль",
+    "password_placeholder": "••••••••",
+    "username": "Никнейм",
+    "username_placeholder": "Steve",
+    "confirm_password": "Повтор пароля",
+    "submit": "Войти",
+    "register": "Зарегистрироваться",
+    "loading": "Загрузка...",
+    "logout": "Выйти"
+  },
+  "devs": {
+    "title": "Команда",
+    "subtitle": "Люди, которые создают и развивают сервер",
+    "sections": {
+      "developers": "Разработчики",
+      "moderators": "Модераторы"
+    },
+    "roles": {
+      "owner": "Владелец",
+      "developer": "Разработчик",
+      "builder": "Строитель",
+      "moderator": "Модератор"
+    }
+  }
+}

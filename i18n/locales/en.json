@@ -1,0 +1,44 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "rules": "Rules"
+  },
+  "hero": {
+    "tagline_prefix": "Somewhere in the",
+    "tagline_highlight": "darkness",
+    "tagline_suffix": "they already wait for you.",
+    "cta": "Play"
+  },
+  "account": {
+    "login": "Log in"
+  },
+  "auth": {
+    "title_login": "Sign In",
+    "title_register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "password_placeholder": "••••••••",
+    "username": "Nickname",
+    "username_placeholder": "Steve",
+    "confirm_password": "Confirm password",
+    "submit": "Sign In",
+    "register": "Create account",
+    "loading": "Loading...",
+    "logout": "Log out"
+  },
+  "devs": {
+    "title": "The Team",
+    "subtitle": "The people who build and run the server",
+    "sections": {
+      "developers": "Developers",
+      "moderators": "Moderators"
+    },
+    "roles": {
+      "owner": "Owner",
+      "developer": "Developer",
+      "builder": "Builder",
+      "moderator": "Moderator"
+    }
+  }
+}
