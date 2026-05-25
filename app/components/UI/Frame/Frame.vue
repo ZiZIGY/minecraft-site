@@ -21,17 +21,24 @@
     :class="cn(frameVariants($props), $attrs.class)"
     :initial="{ scale: 0.8, opacity: 0 }"
     :whileInView="{ scale: 1, opacity: 1 }"
-    :viewport="{ once: true }"
     :transition="spring"
   >
-    <motion.img
-      :src="src"
+    <motion.div
       class="size-3/4"
       draggable="false"
       :initial="{ scale: 0.4 }"
       :whileInView="{ scale: 1 }"
-      :viewport="{ once: true }"
       :transition="spring"
-    />
+    >
+      <NuxtImg
+        :src="src"
+        class="w-full h-full object-cover rounded-sm pointer-events-none select-none"
+      />
+    </motion.div>
   </motion.div>
 </template>
+
+<style scoped>
+  .frame {
+  }
+</style>

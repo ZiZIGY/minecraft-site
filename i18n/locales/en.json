@@ -27,6 +27,10 @@
     "loading": "Loading...",
     "logout": "Log out"
   },
+  "news": {
+    "title": "News",
+    "subtitle": "Latest server events"
+  },
   "devs": {
     "title": "The Team",
     "subtitle": "The people who build and run the server",

@@ -9,14 +9,17 @@
 </script>
 
 <template>
-  <!-- Viewport: overflow hidden -->
   <div
     ref="emblaRef"
     :class="cn('overflow-hidden', $attrs.class)"
     v-bind="$attrs"
   >
     <!-- Container: flex-row, drag area -->
-    <div :class="cn('flex items-stretch touch-[pan-y_pinch-zoom]', props.containerClass)">
+    <div
+      :class="
+        cn('flex items-stretch touch-[pan-y_pinch-zoom]', props.containerClass)
+      "
+    >
       <slot />
     </div>
   </div>

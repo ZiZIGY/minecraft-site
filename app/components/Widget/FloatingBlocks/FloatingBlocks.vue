@@ -18,27 +18,22 @@
 
   const IMAGES = [
     { src: '/images/blocks/grass.webp', sound: grassSfx, color: '#5d8a3c' },
-    { src: '/images/blocks/cobblestone.webp', sound: stoneSfx, color: '#8a8a8a' },
+    {
+      src: '/images/blocks/cobblestone.webp',
+      sound: stoneSfx,
+      color: '#8a8a8a',
+    },
     { src: '/images/blocks/oak_planks.webp', sound: woodSfx, color: '#c8984e' },
     { src: '/images/blocks/glass.webp', sound: glassSfx, color: '#b8dde0' },
   ];
 
-  type TParticle = {
-    id: number;
-    dx: string;
-    dy: string;
-    rotate: string;
-    size: string;
-    shade: string;
-  };
-
-  type TParticleGroup = {
+  interface IBurst {
     id: number;
     left: string;
     top: string;
     zIndex: number;
-    particles: TParticle[];
-  };
+    color: string;
+  }
 
   function shuffle<T>(arr: T[]): T[] {
     const a = [...arr];
@@ -66,10 +61,15 @@
 
   const blocks = ref(createBlocks());
   const brokenCount = ref(0);
-  const particleGroups = ref<TParticleGroup[]>([]);
+  const bursts = ref<IBurst[]>([]);
 
-  function onBlockBroken({ left, top, zIndex, particles }: Omit<TParticleGroup, 'id'>) {
-    particleGroups.value.push({ id: Date.now(), left, top, zIndex, particles });
+  function onBlockBroken(block: {
+    left: string;
+    top: string;
+    zIndex: number;
+    color: string;
+  }) {
+    bursts.value.push({ id: Date.now(), ...block });
 
     brokenCount.value++;
     if (brokenCount.value === BLOCK_COUNT) {
@@ -84,8 +84,8 @@
     }
   }
 
-  function removeParticleGroup(id: number) {
-    particleGroups.value = particleGroups.value.filter(g => g.id !== id);
+  function removeBurst(id: number) {
+    bursts.value = bursts.value.filter((b) => b.id !== id);
   }
 </script>
 
@@ -103,51 +103,27 @@
       :tilt="b.tilt"
       class="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
       :style="{ left: b.left, top: b.top }"
-      @broken="(particles) => onBlockBroken({ left: b.left, top: b.top, zIndex: b.zIndex, particles })"
+      @broken="
+        () =>
+          onBlockBroken({
+            left: b.left,
+            top: b.top,
+            zIndex: b.zIndex,
+            color: b.color,
+          })
+      "
     />
   </AnimatePresence>
 
   <div
-    v-for="group in particleGroups"
-    :key="group.id"
+    v-for="burst in bursts"
+    :key="burst.id"
     class="absolute pointer-events-none"
-    :style="{ left: group.left, top: group.top, zIndex: group.zIndex }"
+    :style="{ left: burst.left, top: burst.top, zIndex: burst.zIndex }"
   >
-    <span
-      v-for="(p, pi) in group.particles"
-      :key="p.id"
-      class="particle absolute"
-      :style="{
-        width: p.size,
-        height: p.size,
-        backgroundColor: p.shade,
-        '--dx': p.dx,
-        '--dy': p.dy,
-        '--p-rotate': p.rotate,
-      }"
-      @animationend="pi === 0 ? removeParticleGroup(group.id) : undefined"
+    <UIDecorationVoxelBurst
+      :color="burst.color"
+      @done="removeBurst(burst.id)"
     />
   </div>
 </template>
-
-<style scoped>
-  .particle {
-    left: 0;
-    top: 0;
-    transform: translate(-50%, -50%);
-    animation: break-out 0.55s ease-out forwards;
-    image-rendering: pixelated;
-  }
-
-  @keyframes break-out {
-    0% {
-      transform: translate(-50%, -50%) rotate(0deg) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
-        rotate(var(--p-rotate)) scale(0);
-      opacity: 0;
-    }
-  }
-</style>

@@ -3,21 +3,15 @@ interface IUser {
   username: string;
 }
 
-import teleport from '~/assets/sfx/teleport.mp3';
+const user = ref<IUser | null>(null);
+const isLoading = ref(false);
+const error = ref<string | null>(null);
+const isModalOpen = ref(false);
 
 export const useAuth = () => {
-  const user = useState<IUser | null>('auth-user', () => null);
-  const isLoading = useState<boolean>('auth-loading', () => false);
-  const error = useState<string | null>('auth-error', () => null);
-  const isModalOpen = useState<boolean>('auth-modal-open', () => false);
-
-  const modalSfx = useSFX(teleport, { volume: 0.5 });
-
   const openModal = () => {
     isModalOpen.value = true;
     error.value = null;
-
-    modalSfx.play();
   };
   const closeModal = () => {
     isModalOpen.value = false;
@@ -33,7 +27,8 @@ export const useAuth = () => {
     isLoading.value = true;
     error.value = null;
     try {
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      // TODO: реальный API
+      await new Promise((r) => setTimeout(r, 700));
       user.value = { email, username: email.split('@')[0]! };
       closeModal();
     } catch {
@@ -60,9 +55,9 @@ export const useAuth = () => {
 
     isLoading.value = true;
     error.value = null;
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      // TODO: реальный API
+      await new Promise((r) => setTimeout(r, 700));
       user.value = { email, username };
       closeModal();
     } catch {

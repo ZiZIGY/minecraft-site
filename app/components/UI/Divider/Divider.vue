@@ -1,7 +1,14 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="divider"> </div>
+  <div class="divider">
+    <UIDecorationLiana class="h-[200svh] absolute top-0" />
+    <UIDecorationLiana class="h-[200svh] absolute top-0 right-0" />
+    <UIDecorationLiana class="h-128 absolute top-0 right-32" />
+    <UIDecorationLiana class="h-[175svh] absolute top-0 right-96" />
+    <UIDecorationLiana class="h-96 absolute left-128 top-0" />
+    <UIDecorationLiana class="h-256 inset-0 left-64 absolute" />
+  </div>
 </template>
 
 <style>
@@ -12,7 +19,7 @@
     background-size: 8rem 8rem;
     background-repeat: repeat-x;
     box-shadow: 0 10px 50px 50px rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    z-index: 20;
     &:before {
       content: '';
       display: block;

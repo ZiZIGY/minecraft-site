@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import { motion, AnimatePresence } from 'motion-v';
 
+  import teleport from '~/assets/sfx/teleport.mp3';
+
   interface IModalProps {
     title?: string;
   }
@@ -13,12 +15,15 @@
 
   const close = () => (open.value = false);
 
+  const sfx = useSFX(teleport);
+
   onMounted(() => {
+    sfx.play();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close();
     };
-    window.addEventListener('keydown', onKey);
-    onUnmounted(() => window.removeEventListener('keydown', onKey));
+    document.addEventListener('keydown', onKey);
+    onUnmounted(() => document.removeEventListener('keydown', onKey));
   });
 </script>
 
@@ -49,10 +54,10 @@
           role="dialog"
           aria-modal="true"
         >
-          <!-- Tabs above panel (optional) -->
+          <!-- Tabs above panel — layout controlled entirely by consumer -->
           <div
             v-if="$slots.tabs"
-            class="flex items-end gap-1 px-2"
+            class="flex items-end"
           >
             <slot name="tabs" />
           </div>

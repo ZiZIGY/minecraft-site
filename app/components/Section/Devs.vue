@@ -61,7 +61,6 @@
       class="relative container mx-auto z-20"
       :initial="{ opacity: 0, y: 48, scale: 0.97 }"
       :whileInView="{ opacity: 1, y: 0, scale: 1 }"
-      :viewport="{ once: true, margin: '-80px' }"
       :transition="{ type: 'spring' as const, stiffness: 180, damping: 24 }"
     >
       <UIPanel>
@@ -112,7 +111,6 @@
                   <motion.div
                     :initial="{ opacity: 0, y: 20 }"
                     :whileInView="{ opacity: 1, y: 0 }"
-                    :viewport="{ once: true }"
                     :transition="{
                       type: 'spring' as const,
                       stiffness: 240,

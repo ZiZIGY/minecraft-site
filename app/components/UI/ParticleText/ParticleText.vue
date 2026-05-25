@@ -7,20 +7,8 @@
     count: 12,
   });
 
-  interface IParticle {
-    left: string;
-    top: string;
-    delay: string;
-    duration: string;
-    dx: string;
-    dy: string;
-    size: string;
-  }
-
-  const particles = ref<IParticle[]>([]);
-
-  onMounted(() => {
-    particles.value = Array.from({ length: props.count }, () => ({
+  function generateParticles() {
+    return Array.from({ length: props.count }, () => ({
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       delay: `${Math.random() * 2.5}s`,
@@ -29,28 +17,30 @@
       dy: `${-(0.5 + Math.random() * 1.2)}em`,
       size: `${0.15 + Math.random() * 0.15}em`,
     }));
-  });
+  }
 </script>
 
 <template>
   <span class="relative inline-block">
     <slot />
-    <span
-      v-for="(p, i) in particles"
-      :key="i"
-      class="particle absolute pointer-events-none"
-      :style="{
-        left: p.left,
-        top: p.top,
-        width: p.size,
-        height: p.size,
-        backgroundColor: 'currentColor',
-        '--dx': p.dx,
-        '--dy': p.dy,
-        '--duration': p.duration,
-        '--delay': p.delay,
-      }"
-    />
+    <ClientOnly>
+      <span
+        v-for="(p, i) in generateParticles()"
+        :key="i"
+        class="particle absolute pointer-events-none"
+        :style="{
+          left: p.left,
+          top: p.top,
+          width: p.size,
+          height: p.size,
+          backgroundColor: 'currentColor',
+          '--dx': p.dx,
+          '--dy': p.dy,
+          '--duration': p.duration,
+          '--delay': p.delay,
+        }"
+      />
+    </ClientOnly>
   </span>
 </template>
 

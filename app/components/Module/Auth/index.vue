@@ -29,9 +29,9 @@
         @click="openModal"
       >
         <UIFrame class="shrink-0" />
-        <span class="leading-none text-shadow-mc"
-          >{{ $t('auth.title_login') }} | {{ $t('auth.title_register') }}</span
-        >
+        <span class="leading-none text-shadow-mc">
+          {{ $t('auth.title_login') }} | {{ $t('auth.title_register') }}
+        </span>
       </button>
     </template>
 
