@@ -8,6 +8,7 @@
     <div
       class="bg-amber-950 h-svh overflow-hidden box-content flex items-center justify-center"
     >
+      <form @submit="(e) => e"></form>
     </div>
   </div>
 </template>
